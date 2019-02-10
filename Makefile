@@ -1,4 +1,4 @@
-build: cpu.out
+build: src/cpu.out
 setup: binaries services
 services: /etc/systemd/system/psi_exporter.service /etc/systemd/system/node_exporter.service
 binaries: /usr/local/bin/psi_exporter /usr/local/bin/node_exporter
