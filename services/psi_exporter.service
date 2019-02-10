@@ -1,0 +1,9 @@
+[Unit]
+Description=PSI Exporter
+
+[Service]
+User=root
+ExecStart=/usr/local/bin/psi_exporter
+
+[Install]
+WantedBy=multi-user.target
