@@ -3,7 +3,7 @@ Description=Node Exporter
 
 [Service]
 User=root
-ExecStart=/usr/sbin/node_exporter
+ExecStart=/usr/local/bin/node_exporter --web.listen-address=":9001"
 
 [Install]
 WantedBy=multi-user.target
