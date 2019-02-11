@@ -2,7 +2,10 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "ubuntu/bionic64"
+
+  # see https://github.com/cirocosta/mylinux.
+  # note: this can be switched by `ubuntu/bionic64`.
+  config.vm.box = "mylinux"
 
   config.vm.provider "virtualbox" do |v|
     v.memory = 2048
@@ -11,4 +14,5 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "forwarded_port", guest: 9000, host: 9000
   config.vm.network "forwarded_port", guest: 9001, host: 9001
+
 end
