@@ -16,22 +16,9 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1549825350812,
+  "iteration": 1550178612021,
   "links": [],
   "panels": [
-    {
-      "collapsed": false,
-      "gridPos": {
-        "h": 1,
-        "w": 24,
-        "x": 0,
-        "y": 0
-      },
-      "id": 20,
-      "panels": [],
-      "title": "Traditional Metrics",
-      "type": "row"
-    },
     {
       "cacheTimeout": null,
       "colorBackground": false,
@@ -51,9 +38,9 @@
       },
       "gridPos": {
         "h": 2,
-        "w": 24,
+        "w": 3,
         "x": 0,
-        "y": 1
+        "y": 0
       },
       "id": 16,
       "interval": null,
@@ -113,6 +100,19 @@
       "valueName": "avg"
     },
     {
+      "collapsed": false,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 2
+      },
+      "id": 20,
+      "panels": [],
+      "title": "Traditional Metrics",
+      "type": "row"
+    },
+    {
       "aliasColors": {},
       "bars": false,
       "dashLength": 10,
@@ -158,6 +158,7 @@
           "expr": "sum(irate(node_cpu_seconds_total{mode=\"system\"}[1m]))",
           "format": "time_series",
           "intervalFactor": 1,
+          "legendFormat": "system",
           "refId": "B"
         }
       ],
@@ -394,6 +395,98 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "fill": 1,
+      "gridPos": {
+        "h": 9,
+        "w": 12,
+        "x": 12,
+        "y": 12
+      },
+      "id": 22,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "links": [],
+      "nullPointMode": "null",
+      "percentage": false,
+      "pointradius": 5,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(node_disk_written_bytes_total[30s])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "write: {{ device }}",
+          "refId": "A"
+        },
+        {
+          "expr": "irate(node_disk_read_bytes_total[30s])",
+          "format": "time_series",
+          "intervalFactor": 1,
+          "legendFormat": "read: {{ device }}",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Disk Throughput",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 1,
+          "format": "Bps",
+          "label": "",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": true,
       "gridPos": {
         "h": 1,
@@ -413,7 +506,7 @@
             "h": 9,
             "w": 24,
             "x": 0,
-            "y": 2
+            "y": 22
           },
           "id": 2,
           "legend": {
