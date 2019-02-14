@@ -17,7 +17,7 @@
 /**
  * directory where the writes will be directed to
  */
-#define BASE_DIRECTORY "/tmp"
+#define BASE_DIRECTORY "./"
 
 /**
  * write_to_disk - writes `count` MiB of data to a
