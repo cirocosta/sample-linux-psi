@@ -1,7 +1,10 @@
-build: src/cpu.out
+build: src/cpu.out src/disk.out
 setup: binaries services
 services: /etc/systemd/system/psi_exporter.service /etc/systemd/system/node_exporter.service
 binaries: /usr/local/bin/psi_exporter /usr/local/bin/node_exporter
+
+image:
+	docker build -t cirocosta/sample-psi .
 
 upgrade-kernel:
 	curl -SOL http://kernel.ubuntu.com/~kernel-ppa/mainline/v4.20/linux-headers-4.20.0-042000_4.20.0-042000.201812232030_all.deb
