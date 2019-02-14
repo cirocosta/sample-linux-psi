@@ -24,7 +24,7 @@
  * 0    --> false
  * !=0  --> true
  */
-#define SLOW_WRITES 0
+#define SLOW_WRITES 1
 
 /**
  * write_to_disk - writes `count` MiB of data to a
