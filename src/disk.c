@@ -37,8 +37,6 @@ write_to_file(int fd)
 	unsigned long writes                  = MiB / CHUNK_SIZE;
 	int           err, i = writes;
 
-	printf("writes=%ld\n", writes);
-
 	while (1) {
                 if (SLOW_WRITES) {
                         sleep(1);
@@ -120,11 +118,13 @@ start_workers(int n)
 				perror("fork:");
 				exit(1);
 			case 0:
-				printf("%d\n", n);
+				printf("%d: starting\n", n);
 				while (1) {
 					write_to_file_in_directory(
 					  BASE_DIRECTORY);
 				}
+
+				printf("%d: bye\n", n);
 				exit(0);
 		}
 	}
