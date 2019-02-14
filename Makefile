@@ -14,6 +14,15 @@ upgrade-kernel:
 	dpkg -i *.deb
 	update-grub
 
+
+upgrade-kernel-latest:
+	curl -SOL http://kernel.ubuntu.com/~kernel-ppa/mainline/v5.0-rc6/linux-headers-5.0.0-050000rc6_5.0.0-050000rc6.201902102330_all.deb
+	curl -SOL http://kernel.ubuntu.com/~kernel-ppa/mainline/v5.0-rc6/linux-headers-5.0.0-050000rc6-generic_5.0.0-050000rc6.201902102330_amd64.deb
+	curl -SOL http://kernel.ubuntu.com/~kernel-ppa/mainline/v5.0-rc6/linux-image-unsigned-5.0.0-050000rc6-generic_5.0.0-050000rc6.201902102330_amd64.deb
+	curl -SOL http://kernel.ubuntu.com/~kernel-ppa/mainline/v5.0-rc6/linux-modules-5.0.0-050000rc6-generic_5.0.0-050000rc6.201902102330_amd64.deb
+	dpkg -i *.deb
+	update-grub
+
 fmt:
 	find . -name "*.c" -o -name "*.h" | xargs clang-format -style=file -i
 
