@@ -20,6 +20,13 @@
 #define BASE_DIRECTORY "./"
 
 /**
+ * Whether the writes should be slow or not
+ * 0    --> false
+ * !=0  --> true
+ */
+#define SLOW_WRITES 0
+
+/**
  * write_to_disk - writes `count` MiB of data to a
  * particular file.
  */
@@ -33,6 +40,10 @@ write_to_file(int fd)
 	printf("writes=%ld\n", writes);
 
 	while (1) {
+                if (SLOW_WRITES) {
+                        sleep(1);
+                }
+
 		memset(file_buffer, rand() % 255, CHUNK_SIZE);
 
 		while (i-- > 0) {
