@@ -7,15 +7,12 @@
 #define KiB 1 << 10
 #define MiB 1 << 20
 
+#define MAX_PATH_SIZE 512
+
 /**
  * size of each chunk to be written
  */
 #define CHUNK_SIZE 4 * KiB
-
-/**
- * approximate number of MiBs to write
- */
-#define MB_TO_WRITE 10
 
 /**
  * directory where the writes will be directed to
@@ -27,11 +24,13 @@
  * particular file.
  */
 int
-write_to_file(int fd, int mebibytes)
+write_to_file(int fd)
 {
 	char          file_buffer[CHUNK_SIZE] = { 0 };
-	unsigned long writes                  = mebibytes * MiB / CHUNK_SIZE;
+	unsigned long writes                  = MiB / CHUNK_SIZE;
 	int           err, i = writes;
+
+	printf("writes=%ld\n", writes);
 
 	while (1) {
 		memset(file_buffer, rand() % 255, CHUNK_SIZE);
@@ -66,13 +65,14 @@ write_to_file(int fd, int mebibytes)
  *
  */
 int
-write_to_file_in_directory(char* directory, int mebibytes)
+write_to_file_in_directory(char* directory)
 {
-	char  filename[512];
+	char  filename[MAX_PATH_SIZE];
 	FILE* fp;
 	int   fd, err;
 
-	err = snprintf(filename, 512, "%s/file-%d", directory, rand());
+	err =
+	  snprintf(filename, MAX_PATH_SIZE, "%s/file-%d", directory, rand());
 	if (err < 0) {
 		return -1;
 	}
@@ -89,7 +89,7 @@ write_to_file_in_directory(char* directory, int mebibytes)
 		return -1;
 	}
 
-	err = write_to_file(fd, mebibytes);
+	err = write_to_file(fd);
 	if (err == -1) {
 		printf("failed to write to file");
 		return -1;
@@ -112,7 +112,7 @@ start_workers(int n)
 				printf("%d\n", n);
 				while (1) {
 					write_to_file_in_directory(
-					  BASE_DIRECTORY, MB_TO_WRITE);
+					  BASE_DIRECTORY);
 				}
 				exit(0);
 		}
